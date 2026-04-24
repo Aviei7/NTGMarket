@@ -1,0 +1,60 @@
+<div class="auth-container">
+  <p-card class="auth-card">
+    <ng-template #header>
+      <div class="auth-header">
+        <h1>Вхід в обліковий запис</h1>
+      </div>
+    </ng-template>
+
+    <form (ngSubmit)="onLogin()" class="auth-form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          pInputText
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          type="email"
+          placeholder="Введіть ваш email"
+          class="w-100"
+          required
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">Пароль</label>
+        <p-password
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Введіть ваш пароль"
+          [toggleMask]="true"
+          class="w-100"
+          required
+        ></p-password>
+      </div>
+
+      <!-- Login Button -->
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <button
+        pButton
+        type="submit"
+        label="Увійти"
+        class="w-100 login-button"
+        [loading]="false"
+      ></button>
+    </form>
+
+    <!-- Sign Up Link -->
+    <div class="signup-section">
+      <p class="signup-text">
+        Немає облікового запису?
+        <a href="javascript:void(0)" (click)="onSignUp()" class="signup-link">
+          Зареєструйтеся
+        </a>
+      </p>
+    </div>
+  </p-card>
+</div>

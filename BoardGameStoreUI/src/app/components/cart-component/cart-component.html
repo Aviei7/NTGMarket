@@ -1,0 +1,120 @@
+<section class="cart-page">
+  <div class="cart-header">
+    <div>
+      <p class="cart-kicker">NTG Market</p>
+      <h1>Shopping Cart</h1>
+      <!-- <p class="cart-subtitle">A simple base layout for your cart flow and checkout logic.</p> -->
+    </div>
+
+    <div class="cart-badge">
+      <span>{{ itemsCount }}</span>
+      <small>items</small>
+    </div>
+  </div>
+
+  <div class="cart-layout" *ngIf="CartInfo.items.length; else emptyCart">
+    <div class="cart-items-panel">
+      <div class="panel-heading">
+        <h2>Cart Items</h2>
+        <button type="button" class="ghost-action" (click)="OnClearCart()">Clear cart</button>
+      </div>
+
+      <article class="cart-item-card" *ngFor="let item of CartInfo.items">
+        <div class="item-media">
+          <img
+            [src]="getItemImageUrl(item)"
+            [alt]="item.productName"
+            loading="lazy"
+            (error)="onItemImageError($event, item)" />
+        </div>
+
+        <div class="item-content">
+          <div class="item-copy">
+            <p class="item-category">Product</p>
+            <h3>{{ item.productName }}</h3>
+            <p class="item-meta">Article #{{ item.productId }}</p>
+          </div>
+
+          <div class="item-controls">
+            <div class="quantity-box">
+              <button type="button" (click)="OnSubItem(item.productId)">-</button>
+              <span>{{ item.quantity }}</span>
+              <button type="button" (click)="OnAddItem(item.productId)">+</button>
+            </div>
+
+            <div class="item-price-block">
+              <strong>{{ item.unitPrice * item.quantity | number:'1.0-0' }} UAH</strong>
+              <span>{{ item.unitPrice | number:'1.0-0' }} UAH each</span>
+            </div>
+
+            <button type="button" class="remove-action" (click)="OnRemoveItem(item.productId)">Remove</button>
+          </div>
+        </div>
+      </article>
+      <app-checkout-form-component></app-checkout-form-component>
+    </div> 
+
+    <aside class="cart-summary-panel">
+      <div class="summary-card">
+        <div class="panel-heading">
+          <h2>Order Summary</h2>
+        </div>
+
+        <div class="summary-rows">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>{{ subtotal | number:'1.0-0' }} UAH</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount</span>
+            <strong class="discount-value">{{ discountPercentage }}%</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>DiscountSum</span>
+            <strong class="discount-value">- {{ calculateDiscount | number:'1.0-0' }} UAH</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span>
+            <strong>{{ delivery === 0 ? 'Free' : ((delivery | number:'1.0-0') + ' UAH') }}</strong>
+          </div>
+        </div>
+
+        <div class="summary-total">
+          <span>Total</span>
+          <strong>{{ totalSum | number:'1.0-0' }} UAH</strong>
+        </div>
+
+        <button type="button" class="checkout-button" routerLink="/checkout">Proceed to Checkout</button>
+        <button type="button" class="secondary-button" routerLink="/catalog">Continue Shopping</button>
+
+        <div class="promo-box">
+          <label for="promoCode">Promo code</label>
+          <div class="promo-input-wrap">
+            <input id="promoCode" #promoCodeInput type="text" placeholder="Enter code" />
+            <button type="button" (click)="applyPromoCode(promoCodeInput.value)">Apply</button>
+          </div>
+          <small *ngIf="appliedPromoCode && !promoErrorMessage">Applied: {{ appliedPromoCode }}</small>
+          <small *ngIf="promoErrorMessage">{{ promoErrorMessage }}</small>
+        </div>
+
+        <ul class="summary-features">
+          <li>Secure checkout area</li>
+          <li>Fast delivery across Ukraine</li>
+          <li>Support for card and cash payment</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <div class="empty-cart-icon">Cart</div>
+      <h2>Your cart is empty</h2>
+      <p>Use this state for the first screen before products are added.</p>
+      <button type="button" class="checkout-button empty-action" routerLink="/catalog">Go to Catalog</button>
+    </div>
+  </ng-template>
+</section>

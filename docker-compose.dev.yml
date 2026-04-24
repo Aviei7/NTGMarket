@@ -1,0 +1,87 @@
+name: boardstoreproject-dev
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "BoardGameStore!1"
+    ports:
+      - "14333:1433"
+    volumes:
+      - sqlserver-data-dev:/var/opt/mssql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data-dev:/data
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./BoardGameStore
+      dockerfile: Dockerfile_Backend.dev
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:8080"
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      Database__Provider: "SqlServer"
+      Cache__Provider: "Redis"
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=BoardGameStore;User Id=sa;Password=BoardGameStore!1;TrustServerCertificate=True;Encrypt=False;"
+      ConnectionStrings__Redis: "redis:6379"
+      Cors__AllowedOrigins__0: "http://localhost:4200"
+      JwtOptions__Secure: "false"
+      JwtOptions__SameSite: "Lax"
+      CartCookieOptions__Secure: "false"
+      CartCookieOptions__SameSite: "Lax"
+    ports:
+      - "5090:8080"
+    volumes:
+      - ./BoardGameStore:/src
+      - backend-root-obj-dev:/src/obj
+      - backend-webapp-bin-dev:/src/WebApp/bin
+      - backend-webapp-obj-dev:/src/WebApp/obj
+      - backend-application-bin-dev:/src/Application/bin
+      - backend-application-obj-dev:/src/Application/obj
+      - backend-domain-bin-dev:/src/Domain/bin
+      - backend-domain-obj-dev:/src/Domain/obj
+      - backend-infrastructure-bin-dev:/src/Infrastructure/bin
+      - backend-infrastructure-obj-dev:/src/Infrastructure/obj
+      - nuget-packages-dev:/root/.nuget/packages
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  ui:
+    build:
+      context: ./BoardGameStoreUI
+      dockerfile: Dockerfile_UI.dev
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./BoardGameStoreUI:/app
+      - node-modules-dev:/app/node_modules
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  sqlserver-data-dev:
+  redis-data-dev:
+  nuget-packages-dev:
+  node-modules-dev:
+  backend-root-obj-dev:
+  backend-webapp-bin-dev:
+  backend-webapp-obj-dev:
+  backend-application-bin-dev:
+  backend-application-obj-dev:
+  backend-domain-bin-dev:
+  backend-domain-obj-dev:
+  backend-infrastructure-bin-dev:
+  backend-infrastructure-obj-dev:

@@ -1,0 +1,34 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="laptop-bg" x1="70" y1="58" x2="560" y2="588" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF7FF"/>
+      <stop offset="1" stop-color="#D7EBFF"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="206" y1="168" x2="429" y2="383" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102A43"/>
+      <stop offset="1" stop-color="#2D6CDF"/>
+    </linearGradient>
+    <filter id="laptop-shadow" x="108" y="120" width="424" height="378" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="20"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.113725 0 0 0 0 0.309804 0 0 0 0 0.631373 0 0 0 0.18 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" rx="64" fill="url(#laptop-bg)"/>
+  <circle cx="126" cy="128" r="82" fill="#DDEEFF"/>
+  <circle cx="516" cy="520" r="92" fill="#CDE3FF"/>
+
+  <g filter="url(#laptop-shadow)">
+    <rect x="188" y="152" width="264" height="188" rx="22" fill="#E8EEF7"/>
+    <rect x="205" y="170" width="230" height="154" rx="16" fill="url(#screen)"/>
+    <path d="M161 386C161 379.373 166.373 374 173 374H467C473.627 374 479 379.373 479 386V396H161V386Z" fill="#CBD5E1"/>
+    <path d="M138 396H502C505.866 396 509 399.134 509 403C509 406.866 505.866 410 502 410H138C134.134 410 131 406.866 131 403C131 399.134 134.134 396 138 396Z" fill="#94A3B8"/>
+    <path d="M248 280L292 238C299.273 231.057 310.588 231.188 317.7 238.297L347.61 268.207C354.697 275.294 365.96 275.449 373.239 268.56L388.705 253.919C397.612 245.483 412.402 249.204 416.194 260.922L425 288V300H215V276.824L248 280Z" fill="#8CD8FF"/>
+    <circle cx="266" cy="222" r="16" fill="#A5F3FC"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+﻿namespace Application.DTO.Input
+{
+    public class ProductQuery
+    {
+        /*Используется в коде каждый раз, когда фронт просит список продуктов с фильтрами*/
+        public string? Search { get; set; }
+        public int? CategoryId { get; set; }
+        public decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+        public bool InStockOnly { get; set; }
+        public string? Sort { get; set; }
+        public int Skip { get; set;  }
+        public int Page { get; set; } = 1;
+        public int PageSize { get; set; } = 12;
+
+        public ICollection<FilterValueDto>? AllFilter { get; set; }
+
+
+    }
+}

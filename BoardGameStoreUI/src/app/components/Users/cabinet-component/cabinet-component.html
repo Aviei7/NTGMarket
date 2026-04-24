@@ -1,0 +1,75 @@
+<div class="cabinet-shell">
+  <div class="cabinet-layout">
+    <aside class="sidebar">
+      <section class="profile-card">
+        <div class="profile">
+          <p-avatar class="profile-avatar" icon="pi pi-user" size="large"></p-avatar>
+
+          <div class="profile-info">
+            <div class="name">{{ userName }} {{ lastName }}</div>
+            <div class="email">{{ emailUser }}</div>
+          </div>
+        </div>
+
+        <p class="profile-caption">
+          Тут зібрані ваші замовлення, швидкі переходи та основні дії по акаунту.
+        </p>
+      </section>
+
+      <section class="sidebar-menu-card">
+        <p-panelMenu class="cabinet-menu" [model]="menuItems"></p-panelMenu>
+      </section>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero-card">
+        <p class="section-kicker">Особистий простір</p>
+
+        <div class="hero-top">
+          <div>
+            <h1 class="page-title">Мій кабінет</h1>
+            <p class="page-description">
+              Спокійний огляд історії покупок і головних дій без перевантаження кольорами.
+            </p>
+          </div>
+
+          <div class="hero-stat">
+            <span>{{ orders.length }}</span>
+            <small>замовлення</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="orders-card">
+        <div class="orders-heading">
+          <div>
+            <p class="section-kicker">Історія покупок</p>
+            <h2>Список замовлень</h2>
+          </div>
+        </div>
+
+        <div class="orders-table-wrap">
+          <p-table [value]="orders" [paginator]="true" [rows]="5" class="cabinet-orders-table">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Номер</th>
+                <th>Дата</th>
+                <th>Сума</th>
+                <th>Статус</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.total | currency:'UAH' }}</td>
+                <td>{{ order.status }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

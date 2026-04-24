@@ -1,0 +1,57 @@
+<div class="catalog-page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h3>Shop by Categories</h3>
+      <ul class="category-list">
+        <li *ngFor="let c of categoriesList"
+            [class.active]="c.categoryID === categoryId"
+            (click)="onCategorySelect(c)">
+          {{ c.name }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section filters-section">
+      <h3>Filters</h3>
+      <div *ngFor="let f of filterList" class="filter-group">
+        <label class="filter-category">{{ f.filterName }}</label>
+        <ng-container [ngSwitch]="f.filterType">
+          <div *ngSwitchCase="'TextBox'">
+            <input type="text" placeholder="Введите значение" (ngModelChange)="onFilterChange()" />
+          </div>
+          <div *ngSwitchCase="'RangeSlider'">
+            <div class="range-inputs">
+              <input type="number" [(ngModel)]="priceRange[0]" (ngModelChange)="onFilterChange()" placeholder="От" />
+              <input type="number" [(ngModel)]="priceRange[1]" (ngModelChange)="onFilterChange()" placeholder="До" />
+            </div>
+            <p-slider [(ngModel)]="priceRange" [range]="true" [min]="minPrice" [max]="maxPrice" (onSlideEnd)="onFilterChange()"></p-slider>
+          </div>
+          <div *ngSwitchCase="'CheckBox'" class="checkbox-list">
+            <label *ngFor="let op of f.paramList" class="inline-flex items-center gap-2">
+              <p-checkbox [(ngModel)]="op.checked" (onChange)="onFilterChange()"></p-checkbox>
+              {{ op.operationName }}
+            </label>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="toolbar">
+      <div class="sort">
+        <label>Сортировка:</label>
+        <select [(ngModel)]="selectedSort" (change)="onSortChange($event)">
+          <option *ngFor="let o of sortOptions" [ngValue]="o.value">{{ o.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" [ngClass]="{ 'grid-view': view === 'grid', 'list-view': view === 'list' }">
+      <app-product-card *ngFor="let product of products" [product]="product" class="main-product-card"></app-product-card>
+    </div>
+
+    <p-paginator [totalRecords]="totalProductCount" [first]="first" [rows]="pageSize" (onPageChange)="onPageChange($event)"></p-paginator>
+  </main>
+</div>
+

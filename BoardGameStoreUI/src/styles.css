@@ -1,0 +1,152 @@
+html, body { height: 100%;   overflow-x: hidden !important;}
+body { margin: 0; 
+    font-family: Roboto,
+     "Helvetica Neue", sans-serif; 
+    background: var(--p-surface-ground); /* фон страницы */
+    color: var(--p-text-color);          /* цвет текста по теме */
+}
+
+/* Убираем скроллбары во всех браузерах */
+* {
+  scrollbar-width: none !important;      /* Firefox */
+  -ms-overflow-style: none !important;   /* IE, Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none !important;              /* Chrome, Safari, Edge */
+}
+
+
+.product-card-catalog {
+  --radius: 12px; /*создаём CSS-переменную для скругления углов.*/
+  position: relative; /*карточка становится позиционированным элементом (нужно для absolute внутри).*/
+  background: #fff;
+  border-radius: var(--radius); /*скругляем углы радиусом 12px.*/
+  overflow: visible;                        /* внутренние элементы могут выходить за границы (например extra-панель). */
+  transform: translateZ(0);                 /* создаёт новый слой для сглаживания 3D-эффектов (ускорение GPU). */
+  transition: transform .25s ease, box-shadow .25s ease, border-radius .2s ease; /*плавная анимация изменения масштаба, тени и скругления*/
+  box-shadow: 0 2px 8px rgba(0,0,0,.08); /*лёгкая тень под карточкой.*/
+   padding-bottom: 0;                 /* внутренний отступ низа */
+}
+
+
+.product-card-catalog:hover {
+ transform: scale(1.03); /*карточка слегка увеличивается (zoom).*/
+  box-shadow: 0 12px 28px rgba(0,0,0,.22); /*тень становится сильнее при наведении.*/
+  z-index: 30;                              /* поднимаем карточку над соседями. */
+  /* низ карточки прямой, чтобы extra-панель казалась её продолжением. */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.app-dark .product-card-catalog {
+  background: lightgray;
+}
+
+
+/* ====== сброс стандартных стилей PrimeNG Card ====== */
+/* .card-reset .p-card{ background: transparent; box-shadow: none; border: 0; } убираем стандартный фон, тень и рамку у p-card. */
+/* .card-reset .p-card-body{ padding: 0; }  обнуляем внутренний отступ. Все отступы задаём сами. */
+
+
+/* ====== Extra панель======   */
+.product-card-extra-catalog {
+  position: absolute; /*панель позиционируется относительно карточки.*/
+  left: 0; right: 0; top: 100%; /*панель тянется на всю ширину, располагается сразу под карточкой.*/        
+  margin-top: -1px;          /* убираем щель между карточкой и панелью. */
+  background: inherit;      /* фон берётся такой же, как у карточки. */
+  border-radius: 0 0 var(--radius) var(--radius); /*скругляем только нижние углы.*/
+  padding: 60px;           /* горизонтальные отступы как у контента */
+
+  opacity: 0; /*панель по умолчанию невидима.*/
+  transform: translateY(8px); /*панель смещена чуть вниз (для эффекта появления).*/
+  pointer-events: none; /*клики не проходят, пока панель скрыта.*/
+  transition: opacity .2s ease, transform .2s ease; /*плавное появление и подъём.*/
+}
+
+.product-card-catalog:hover > .product-card-extra-catalog {
+  opacity: 1; /*панель по умолчанию невидима.*/
+  transform: translateY(0); /*возвращается на место (эффект "выезжает вверх").*/
+  pointer-events: auto; /*клики теперь работают.*/
+  padding-bottom: 16px; /*появляется нижний внутренний отступ.*/
+}
+
+/* Тёмная тема */
+.app-dark .product-card-extra-catalog {
+  background: var(--p-surface-ground);
+  color: var(--p-text-color);
+}
+
+/* ====== общая тень для КОРПУСА + EXTRA (единая «коробка») ====== */
+/* При ховере рисуем большую тень псевдоэлементом, чтобы обнимала и extra */
+.product-card-catalog::after{
+  content: ""; /*создаём пустой псевдоэлемент.*/
+  position: absolute; /*позиционируем относительно карточки.*/
+  left: 0; right: 0; top: 0; bottom: 0; /*псевдоэлемент закрывает всю карточку.*/
+  border-radius: var(--radius); /*совпадает с радиусом карточки.*/
+  box-shadow: 0 2px 8px rgba(0,0,0,0);      /* изначально прозрачная тень.*/
+  transition: box-shadow .25s ease, bottom .25s ease, border-radius .2s ease; /*анимация тени, границ и высоты.*/
+  z-index: -1;                               /* тень позади содержимого */
+}
+.product-card-catalog:hover::after{
+  bottom: -180px;                            /* псевдоэлемент расширяется вниз, чтобы накрыть и extra-панель.*/
+  border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius); /*возвращаем скругления снизу (уже для всей "коробки").*/
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);   /* единая тень и для карточки, и для extra-панели.*/
+}
+
+
+/* ====== Текст внутри карточки ====== */
+.product-title-catalog {
+  color: var(--p-text-color);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  white-space: normal;        /* текст переносится */
+  overflow-wrap: break-word;
+}
+
+.product-title-catalog:hover {
+  color: #df9307;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.price-text-catalog {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--p-text-color);
+}
+
+.product-description {
+  white-space: normal;
+  overflow-wrap: break-word;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.price-cart-catalog {
+  display: flex;
+  min-height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+}
+
+.image-cart{
+  position: relative;
+  top: 20px;   
+  left: 30px; 
+}
+
+.catalog-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+
+.cart-icon-catalog {
+  width: 40px;
+  height: 40px;
+}

@@ -1,0 +1,480 @@
+:host {
+  --cabinet-accent: #ff8a00;
+  --cabinet-accent-strong: #d77800;
+  --cabinet-accent-soft: #fff4e8;
+  --cabinet-border: #efe2d1;
+  --cabinet-ink: #222;
+  --cabinet-muted: #6b6258;
+  --cabinet-card: rgba(255, 255, 255, 0.92);
+  display: block;
+}
+
+.cabinet-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 179, 71, 0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 138, 0, 0.12), transparent 26%),
+    linear-gradient(180deg, #f6efe6 0%, #fff9f4 42%, #ffffff 100%);
+}
+
+.cabinet-layout {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+  display: grid;
+  grid-template-columns: minmax(250px, 290px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.sidebar {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 24px;
+}
+
+.profile-card,
+.sidebar-menu-card,
+.hero-card,
+.orders-card {
+  border: 1px solid var(--cabinet-border);
+  border-radius: 24px;
+  background: var(--cabinet-card);
+  box-shadow: 0 18px 40px rgba(73, 46, 11, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.profile-card,
+.sidebar-menu-card,
+.orders-card {
+  padding: 22px;
+}
+
+.profile-card {
+  background: linear-gradient(180deg, #fffdf9 0%, #fff7ef 100%);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.profile-info {
+  min-width: 0;
+}
+
+.profile-info .name {
+  color: var(--cabinet-ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.profile-info .email {
+  margin-top: 4px;
+  color: var(--cabinet-muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.profile-caption,
+.page-description {
+  margin: 0;
+  color: var(--cabinet-muted);
+  line-height: 1.65;
+}
+
+.main-content {
+  display: grid;
+  gap: 24px;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 247, 238, 0.98) 66%, rgba(255, 236, 208, 0.96) 100%);
+}
+
+.hero-card::after {
+  content: '';
+  position: absolute;
+  right: -46px;
+  bottom: -54px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 179, 71, 0.34) 0%, rgba(255, 179, 71, 0.08) 54%, transparent 72%);
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cabinet-accent);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.05;
+  color: var(--cabinet-ink);
+}
+
+.page-description {
+  margin-top: 12px;
+  max-width: 700px;
+}
+
+.hero-stat {
+  min-width: 116px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffb347 0%, #ff8a00 100%);
+  box-shadow: 0 12px 24px rgba(255, 138, 0, 0.24);
+  color: #fff;
+  text-align: center;
+}
+
+.hero-stat span {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hero-stat small {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.orders-heading {
+  margin-bottom: 18px;
+}
+
+.orders-heading h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--cabinet-ink);
+}
+
+.orders-table-wrap {
+  overflow-x: auto;
+}
+
+:host ::ng-deep .profile-avatar .p-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #eef2f7 0%, #e3e9f1 100%);
+  color: #2f3a48;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 20px rgba(47, 58, 72, 0.08);
+}
+
+:host ::ng-deep .cabinet-menu {
+  display: block;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-panel + .p-panelmenu-panel {
+  margin-top: 12px;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-panel {
+  background: transparent;
+  border: 0;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header {
+  border-radius: 18px;
+  outline: none;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-content {
+  border-radius: 18px;
+  background: transparent;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid #f1e6d8;
+  border-radius: 18px;
+  background: #fff;
+  color: var(--cabinet-ink);
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(34, 34, 34, 0.05);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-link:hover,
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-link:focus-visible {
+  transform: translateX(2px);
+  border-color: rgba(255, 138, 0, 0.24);
+  background: var(--cabinet-accent-soft);
+  color: var(--cabinet-accent-strong);
+  box-shadow: 0 12px 26px rgba(255, 138, 0, 0.12);
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-link:focus {
+  outline: none;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-link.p-panelmenu-item-link-active {
+  border-color: rgba(255, 138, 0, 0.3);
+  background: linear-gradient(135deg, #fff9f2 0%, #fff2e2 100%);
+  color: var(--cabinet-accent-strong);
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-icon {
+  font-size: 1rem;
+  color: #8a6127;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-header-label {
+  flex: 1;
+  font-weight: 600;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-badge {
+  min-width: 1.45rem;
+  height: 1.45rem;
+  line-height: 1.45rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb347 0%, #ff8a00 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+:host ::ng-deep .cabinet-menu .p-panelmenu-panel:last-child .p-panelmenu-header-link {
+  color: #8d3b16;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-table-container {
+  border: 1px solid #f1e6d8;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-thead > tr > th {
+  padding: 18px 18px;
+  background: #fff7ee;
+  border-color: #efdfcd;
+  color: #4a3b2b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr > td {
+  padding: 18px;
+  border-color: #f3e8db;
+  color: #2f2b26;
+  background: #fff;
+  transition: background 0.2s ease;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr:nth-child(even) > td {
+  background: #fffaf5;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr:hover > td {
+  background: #fff4e8;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr > td:last-child {
+  font-weight: 600;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-paginator {
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 1px solid #f1e6d8;
+  border-top: 0;
+  border-radius: 0 0 20px 20px;
+  background: #fffdfa;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-page,
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-next,
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-prev,
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-first,
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-last {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  color: #7c6f63;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-page-selected {
+  background: var(--cabinet-accent-soft);
+  color: var(--cabinet-accent-strong);
+  font-weight: 700;
+}
+
+:host ::ng-deep .cabinet-orders-table .p-paginator button:not(.p-disabled):hover {
+  background: var(--cabinet-accent-soft);
+  color: var(--cabinet-accent-strong);
+  transform: translateY(-1px);
+}
+
+:host-context(.app-dark) .cabinet-shell {
+  background:
+    radial-gradient(circle at top left, rgba(255, 179, 71, 0.18), transparent 26%),
+    linear-gradient(180deg, #1a1b1f 0%, #17181c 100%);
+}
+
+:host-context(.app-dark) .profile-card,
+:host-context(.app-dark) .sidebar-menu-card,
+:host-context(.app-dark) .hero-card,
+:host-context(.app-dark) .orders-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(26, 28, 32, 0.92);
+  box-shadow: none;
+}
+
+:host-context(.app-dark) .profile-info .name,
+:host-context(.app-dark) .page-title,
+:host-context(.app-dark) .orders-heading h2 {
+  color: var(--p-text-color);
+}
+
+:host-context(.app-dark) .profile-info .email,
+:host-context(.app-dark) .profile-caption,
+:host-context(.app-dark) .page-description {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+:host-context(.app-dark) .hero-card {
+  background:
+    linear-gradient(135deg, rgba(27, 29, 34, 0.96) 0%, rgba(33, 35, 40, 0.96) 65%, rgba(59, 42, 19, 0.9) 100%);
+}
+
+:host-context(.app-dark) ::ng-deep .profile-avatar .p-avatar {
+  background: linear-gradient(180deg, #242b35 0%, #1f2530 100%);
+  color: #f3f6fa;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-menu .p-panelmenu-header-link,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr > td,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-paginator {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--p-surface-card);
+  color: var(--p-text-color);
+  box-shadow: none;
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-menu .p-panelmenu-header-link:hover,
+:host-context(.app-dark) ::ng-deep .cabinet-menu .p-panelmenu-header-link:focus-visible,
+:host-context(.app-dark) ::ng-deep .cabinet-menu .p-panelmenu-header-link.p-panelmenu-item-link-active,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr:hover > td,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-paginator button:not(.p-disabled):hover,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-paginator .p-paginator-page-selected {
+  background: rgba(255, 138, 0, 0.16);
+  color: #ffbf73;
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-menu .p-panelmenu-header-icon {
+  color: #ffbf73;
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-table-container,
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-thead > tr > th {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-thead > tr > th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--p-text-color);
+}
+
+:host-context(.app-dark) ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr:nth-child(even) > td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 960px) {
+  .cabinet-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .hero-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .cabinet-layout {
+    padding: 18px 14px 28px;
+    gap: 18px;
+  }
+
+  .profile-card,
+  .sidebar-menu-card,
+  .orders-card {
+    padding: 18px;
+  }
+
+  .hero-card {
+    padding: 22px 18px;
+  }
+
+  .page-title {
+    font-size: 30px;
+  }
+
+  .orders-heading h2 {
+    font-size: 24px;
+  }
+
+  .hero-stat {
+    width: 100%;
+  }
+
+  :host ::ng-deep .cabinet-menu .p-panelmenu-header-link,
+  :host ::ng-deep .cabinet-orders-table .p-datatable-thead > tr > th,
+  :host ::ng-deep .cabinet-orders-table .p-datatable-tbody > tr > td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

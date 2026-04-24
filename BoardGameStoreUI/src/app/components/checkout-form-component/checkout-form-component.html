@@ -1,0 +1,149 @@
+<section class="checkout-card">
+  <div class="checkout-header">
+    <div>
+      <p class="checkout-kicker">Checkout</p>
+      <h2>Delivery and customer details</h2>
+      <p class="checkout-subtitle">
+        Complete your order details and choose delivery.
+      </p>
+    </div>
+
+    <div class="checkout-step">Step 2</div>
+  </div>
+
+  <form class="checkout-form" #checkoutForm="ngForm" (ngSubmit)="ConfirmOrder()" novalidate>
+    <div class="checkout-alert checkout-alert--error" *ngIf="validationErrors.length">
+      <strong>Check your contact details</strong>
+      <ul>
+        <li *ngFor="let error of validationErrors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <div class="checkout-grid">
+      <section class="checkout-section">
+        <div class="section-heading">
+          <h3>Where to ship</h3>
+          <span>Delivery info</span>
+        </div>
+
+        <div class="field-grid">
+          <label class="field-group field-group--full">
+            <span>City</span>
+            <input type="text" name="city" placeholder="Kyiv" [(ngModel)]="order.City" />
+          </label>
+
+          <label class="field-group field-group--full">
+            <span>Street / branch / pickup point</span>
+            <input type="text" name="address" placeholder="Nova Poshta branch 18, Kyiv" [(ngModel)]="order.Address" />
+          </label>
+
+          <label class="field-group">
+            <span>Region</span>
+            <input type="text" name="region" placeholder="Kyiv region" [(ngModel)]="order.Region" />
+          </label>
+
+          <label class="field-group">
+            <span>Postal code</span>
+            <input type="text" name="postalCode" placeholder="02000" [(ngModel)]="order.PostalCode" />
+          </label>
+        </div>
+      </section>
+
+      <section class="checkout-section">
+        <div class="section-heading">
+          <h3>Customer details</h3>
+          <span>Contact info</span>
+        </div>
+
+        <div class="field-grid">
+          <label class="field-group">
+            <span>First name</span>
+            <input type="text" name="firstName" placeholder="Yaroslav" [(ngModel)]="order.FirstName" />
+          </label>
+
+          <label class="field-group">
+            <span>Last name</span>
+            <input type="text" name="lastName" placeholder="Bochkovskyi" [(ngModel)]="order.LastName" />
+          </label>
+
+          <label class="field-group">
+            <span>Phone</span>
+            <input type="tel" name="phone" placeholder="+380 67 123 45 67" [(ngModel)]="order.Phone" />
+          </label>
+
+          <label class="field-group">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="player@ntg-market.ua" [(ngModel)]="order.Email" />
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <div class="checkout-grid checkout-grid--stacked">
+      <section class="checkout-section">
+        <div class="section-heading">
+          <h3>Delivery method</h3>
+          <span>Choose the format</span>
+        </div>
+
+        <div class="choice-grid">
+          <label class="choice-card" *ngFor="let method of deliveryMethods">
+            <input
+              type="radio"
+              name="deliveryMethod"
+              [checked]="order.DeliveryMethod === method.deliveryId"
+              (change)="order.DeliveryMethod = method.deliveryId" />
+            <div class="choice-copy">
+              <strong>{{ method.deliveryName }}</strong>
+              <span>{{ method.description }}</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="checkout-section">
+        <div class="section-heading">
+          <h3>Payment</h3>
+          <span>Mocked state</span>
+        </div>
+
+        <div class="choice-grid choice-grid--compact">
+          <label class="choice-card choice-card--compact" *ngFor="let method of paymentMethods">
+            <input
+              type="radio"
+              name="paymentMethod"
+              [checked]="order.PaymentMethod === method.paymentId"
+              (change)="order.PaymentMethod = method.paymentId" />
+            <div class="choice-copy">
+              <strong>{{ method.paymentName }}</strong>
+              <span>{{ method.description }}</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="checkout-section">
+        <div class="section-heading">
+          <h3>Order notes</h3>
+          <span>Optional</span>
+        </div>
+
+        <label class="field-group field-group--full">
+          <span>Comment for the manager or courier</span>
+          <textarea rows="4" name="comment" placeholder="Call me before delivery, please." [(ngModel)]="order.Comment"></textarea>
+        </label>
+      </section>
+    </div>
+
+    <div class="checkout-footer">
+      <div class="checkout-trust">
+        <span>Secure order</span>
+        <small>Contact details are checked before submission.</small>
+      </div>
+
+      <button type="submit" class="checkout-submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Submitting...' : 'Confirm order' }}
+      </button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,17 @@
+{
+  "/api": {
+    "target": "http://localhost:5090",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/images": {
+    "target": "http://localhost:5090",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/swagger": {
+    "target": "http://localhost:5090",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

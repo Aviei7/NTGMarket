@@ -1,0 +1,81 @@
+<section class="checkout-card confirmation-card">
+  <div class="checkout-header confirmation-header">
+    <div class="confirmation-lead">
+      <div class="confirmation-mark" aria-hidden="true"></div>
+
+      <div>
+        <p class="checkout-kicker">Order confirmed</p>
+        <h2>Order accepted</h2>
+        <p class="checkout-subtitle">
+          Your order has been received successfully. We will keep the next order details mocked here until the backend flow is connected.
+        </p>
+      </div>
+    </div>
+
+    <div class="checkout-step">Completed</div>
+  </div>
+
+  <div class="checkout-grid">
+    <section class="checkout-section confirmation-highlight">
+      <div class="section-heading">
+        <h3>Order number</h3>
+        <span>Reference</span>
+      </div>
+
+      <p class="confirmation-order-number">{{ orderId }}</p>
+      <p class="confirmation-copy">
+        Save this number for communication with support or to track this order later.
+      </p>
+    </section>
+
+    <section class="checkout-section">
+      <div class="section-heading">
+        <h3>Payment status</h3>
+        <span>Mocked state</span>
+      </div>
+
+      <span class="status-pill" [ngClass]="paymentStatusClass">{{ paymentStatus }}</span>
+      <p class="confirmation-copy">
+        Payment method: <strong>{{ paymentMethod }}</strong>
+      </p>
+    </section>
+  </div>
+
+  <div class="checkout-grid checkout-grid--stacked">
+    <section class="checkout-section">
+      <div class="section-heading">
+        <h3>What happens next</h3>
+        <span>Order flow</span>
+      </div>
+
+      <div class="confirmation-points">
+        <div class="confirmation-point">
+          <strong>1. Order review</strong>
+          <span>We will verify the order details and prepare it for processing.</span>
+        </div>
+
+        <div class="confirmation-point">
+          <strong>2. Payment check</strong>
+          <span>The payment status will be replaced with real data once the backend is wired.</span>
+        </div>
+
+        <div class="confirmation-point">
+          <strong>3. Delivery update</strong>
+          <span>You will receive the next delivery step after order confirmation.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="checkout-footer confirmation-footer">
+    <div class="checkout-trust">
+      <span>Need anything else?</span>
+      <small>You can continue shopping or return to the cart at any time.</small>
+    </div>
+
+    <div class="confirmation-actions">
+      <a routerLink="/cart" class="secondary-action">Back to cart</a>
+      <a routerLink="/catalog" class="checkout-submit confirmation-submit">Continue shopping</a>
+    </div>
+  </div>
+</section>

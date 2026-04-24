@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+.unavailable-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: #ffffff;
+  isolation: isolate;
+}
+
+.background-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.background-icon {
+  position: absolute;
+  object-fit: contain;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(62%)
+    sepia(92%)
+    saturate(1571%)
+    hue-rotate(358deg)
+    brightness(101%)
+    contrast(101%)
+    drop-shadow(0 10px 20px rgba(255, 126, 0, 0.14));
+}
+
+.background-icon-large {
+  z-index: 0;
+}
+
+.background-icon-small {
+  z-index: 0;
+}
+
+.message-card {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 28px 36px;
+  border: 1px solid rgba(255, 126, 0, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 45px rgba(255, 126, 0, 0.1);
+  text-align: center;
+}
+
+.message-card h1 {
+  margin: 0;
+  color: #ff7e00;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .unavailable-page {
+    padding: 20px;
+  }
+
+  .message-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .background-icon {
+    max-width: 120px;
+    max-height: 120px;
+  }
+}

@@ -1,0 +1,22 @@
+<section class="unavailable-page">
+  <div class="background-icons" aria-hidden="true">
+    @for (icon of backgroundIcons; track $index) {
+      <img
+        class="background-icon"
+        [class]=" 'background-icon ' + icon.zoneClass "
+        src="/assets/icons/header/rolling-dices.svg"
+        alt=""
+        [style.top.%]="icon.top"
+        [style.left.%]="icon.left"
+        [style.width.px]="icon.size"
+        [style.height.px]="icon.size"
+        [style.opacity]="icon.opacity"
+        [style.transform]="'translate(-50%, -50%) rotate(' + icon.rotate + 'deg)'"
+      />
+    }
+  </div>
+
+  <div class="message-card">
+    <h1>Сервіс тимчасово недоступний</h1>
+  </div>
+</section>

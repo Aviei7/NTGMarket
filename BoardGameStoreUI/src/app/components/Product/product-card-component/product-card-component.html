@@ -1,0 +1,36 @@
+<article class="product-card">
+  <img
+    [src]="productImageUrl"
+    [alt]="product.name"
+    class="card-image"
+    loading="lazy"
+    (error)="onImageError($event)"
+  />
+
+  <div class="card-body">
+    <h4 [routerLink]="['/product', product.id]" class="product-title">
+      {{ product.name }}
+    </h4>
+
+    <p class="price">{{ product.price }} ₴</p>
+    <p class="description">{{ product.description }}</p>
+
+    <button
+      type="button"
+      class="add-button"
+      [class.added]="isAdded"
+      [disabled]="isAdding"
+      (click)="addToCart()">
+      <span class="button-content">
+        <i
+          class="pi"
+          [ngClass]="isAdding ? 'pi-spinner pi-spin' : 'pi-shopping-cart'"></i>
+        <span>{{ isAdded ? 'Added' : (isAdding ? 'Adding...' : 'Add to cart') }}</span>
+      </span>
+
+      <span class="button-corner-check" [class.visible]="isAdded" aria-hidden="true">
+        <i class="pi pi-check"></i>
+      </span>
+    </button>
+  </div>
+</article>

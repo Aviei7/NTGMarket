@@ -1,0 +1,35 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="watch-bg" x1="58" y1="52" x2="574" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2FBF7"/>
+      <stop offset="1" stop-color="#D8F3E6"/>
+    </linearGradient>
+    <linearGradient id="watch-face" x1="228" y1="204" x2="412" y2="388" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#143B2E"/>
+      <stop offset="1" stop-color="#16A34A"/>
+    </linearGradient>
+    <filter id="watch-shadow" x="138" y="88" width="364" height="492" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="20"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0862745 0 0 0 0 0.427451 0 0 0 0 0.239216 0 0 0 0.18 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" rx="64" fill="url(#watch-bg)"/>
+  <circle cx="126" cy="146" r="84" fill="#DBF4E7"/>
+  <circle cx="520" cy="494" r="96" fill="#C5EED8"/>
+
+  <g filter="url(#watch-shadow)">
+    <rect x="276" y="128" width="88" height="106" rx="30" fill="#A7F3D0"/>
+    <rect x="276" y="406" width="88" height="106" rx="30" fill="#A7F3D0"/>
+    <rect x="202" y="194" width="236" height="252" rx="58" fill="#ECFDF5"/>
+    <rect x="224" y="216" width="192" height="208" rx="42" fill="url(#watch-face)"/>
+    <circle cx="320" cy="320" r="56" fill="#0F766E" fill-opacity="0.38"/>
+    <path d="M320 284V320L344 344" stroke="#C6F6D5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="320" cy="320" r="12" fill="#ECFDF5"/>
+  </g>
+</svg>

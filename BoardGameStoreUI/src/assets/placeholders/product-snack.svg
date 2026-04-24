@@ -1,0 +1,34 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="snack-bg" x1="58" y1="50" x2="572" y2="588" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF5D8"/>
+      <stop offset="1" stop-color="#FFD7A1"/>
+    </linearGradient>
+    <linearGradient id="pack" x1="214" y1="152" x2="421" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8A3D"/>
+      <stop offset="1" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <filter id="snack-shadow" x="122" y="110" width="396" height="438" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="20"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.729412 0 0 0 0 0.333333 0 0 0 0 0.0627451 0 0 0 0.2 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" rx="64" fill="url(#snack-bg)"/>
+  <circle cx="512" cy="130" r="88" fill="#FFE9BB"/>
+  <circle cx="120" cy="520" r="76" fill="#FFC97E"/>
+
+  <g filter="url(#snack-shadow)">
+    <path d="M244 144H396L444 206L418 458H222L196 206L244 144Z" fill="url(#pack)"/>
+    <path d="M244 144H396L424 194H216L244 144Z" fill="#FFC54E"/>
+    <rect x="236" y="234" width="168" height="122" rx="28" fill="#FFF5E8"/>
+    <path d="M260 296C260 268.386 282.386 246 310 246H330C357.614 246 380 268.386 380 296V322H260V296Z" fill="#FFE08A"/>
+    <path d="M302 274C287.641 274 276 285.641 276 300C276 314.359 287.641 326 302 326H338C352.359 326 364 314.359 364 300C364 285.641 352.359 274 338 274H302Z" fill="#FFD05C"/>
+    <rect x="252" y="380" width="136" height="18" rx="9" fill="#FFB067"/>
+  </g>
+</svg>

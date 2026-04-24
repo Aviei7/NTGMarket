@@ -1,0 +1,18 @@
+﻿using Domain.Models.FiltersModel;
+using Domain.Models.ProductsModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Interfaces.Catalog
+{
+    public interface ICatalogReprository
+    {
+        public IQueryable<ProductModel> SelectProducts();
+
+        public IQueryable<f_CategoryModel> SelectCategory();
+    }
+
+}

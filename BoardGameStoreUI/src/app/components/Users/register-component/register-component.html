@@ -1,0 +1,89 @@
+<div class="register-wrapper">
+  <div class="form-card">
+    <h2>Реєстрація</h2>
+    <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+      <div class="field-group">
+        <label for="first">Ім'я</label>
+        <input
+          id="first"
+          name="firstName"
+          type="text"
+          [(ngModel)]="model.firstName"
+          #firstName="ngModel"
+          required />
+        <small class="error-text" *ngIf="firstName.invalid && firstName.touched">Введіть ім'я.</small>
+      </div>
+
+      <div class="field-group">
+        <label for="last">Прізвище</label>
+        <input
+          id="last"
+          name="lastName"
+          type="text"
+          [(ngModel)]="model.lastName"
+          #lastName="ngModel"
+          required />
+        <small class="error-text" *ngIf="lastName.invalid && lastName.touched">Введіть прізвище.</small>
+      </div>
+
+      <div class="field-group">
+        <label for="phone">Номер телефону</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          [(ngModel)]="model.phone"
+          #phone="ngModel"
+          required
+          pattern="^\+380\d{9}$"
+          (blur)="normalizePhone()" />
+        <small class="error-text" *ngIf="phone.invalid && phone.touched">Введіть номер у форматі +380XXXXXXXXX.</small>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Пошта</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="model.email"
+          #email="ngModel"
+          required
+          email />
+        <small class="error-text" *ngIf="email.invalid && email.touched">Введіть коректний email.</small>
+      </div>
+
+      <div class="field-group">
+        <label for="pass">Пароль</label>
+        <input
+          id="pass"
+          name="password"
+          type="password"
+          [(ngModel)]="model.password"
+          #password="ngModel"
+          required
+          minlength="6" />
+        <small class="error-text" *ngIf="password.invalid && password.touched">Пароль має містити щонайменше 6 символів.</small>
+      </div>
+
+      <div class="field-group">
+        <label for="confirm">Повторіть пароль</label>
+        <input
+          id="confirm"
+          name="confirmPassword"
+          type="password"
+          [(ngModel)]="model.confirmPassword"
+          #confirmPassword="ngModel"
+          required />
+        <small class="error-text" *ngIf="confirmPassword.invalid && confirmPassword.touched">Підтвердіть пароль.</small>
+        <small class="error-text" *ngIf="passwordsMismatch && confirmPassword.touched">Паролі не співпадають.</small>
+      </div>
+
+      <button type="submit" [disabled]="regForm.invalid || passwordsMismatch">Зареєструватися</button>
+
+      <div class="bottom-text">
+        Вже є акаунт? <a routerLink="/login">Увійти</a>
+      </div>
+    </form>
+  </div>
+</div>

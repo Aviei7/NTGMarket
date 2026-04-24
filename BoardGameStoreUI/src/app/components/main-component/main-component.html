@@ -1,0 +1,20 @@
+<div class="main-page">
+  <section class="hero-banner">
+    <h2>Next Turn Games Market</h2>
+  </section>
+
+  <section class="categories-row">
+    <ul class="category-list">
+      <li *ngFor="let cat of categoriesList" (click)="categoryEnter(cat)">{{ cat.name }}</li>
+    </ul>
+  </section>
+
+  <section class="product-section">
+    <div class="product-grid">
+      <app-product-card *ngFor="let product of products" [product]="product" class="main-product-card"></app-product-card>
+    </div>
+    <div class="load-more-wrapper">
+      <p-button label="Завантажити ще" (onClick)="loadMoreItem()" />
+    </div>
+  </section>
+</div>
