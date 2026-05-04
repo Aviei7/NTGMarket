@@ -1,6 +1,6 @@
 # BoardStoreProject
 
-Portfolio e-commerce prototype built with ASP.NET Core and Angular.
+Web Application with ASP.NET Core and Angular.
 
 The project combines a catalog API, client-side storefront UI, cart flow, checkout validation, promo-code support, and cookie-based authentication. It is set up for demo usage first: after the backend starts, it creates its local database automatically and fills it with seeded sample data.
 
